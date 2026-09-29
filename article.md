@@ -182,7 +182,6 @@ This lets the agent recognize:
 - the likely root cause is tied to previous incidents
 
 This makes the system useful because it keeps support context structured and retrievable across separate conversations.
-![Customer history view showing prior customer incidents](images/customer-history.png)
 
 ## REFLECT: Memory as Insight
 
