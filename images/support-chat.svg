@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="930" viewBox="0 0 1540 930">
+  <defs>
+    <style>
+      .bg { fill: #edf1f8; }
+      .chrome { fill: #dfe5f4; }
+      .header { fill: #e7ebf6; }
+      .sidebar { fill: #f7f8fb; }
+      .panel { fill: #ffffff; }
+      .soft { fill: #eef2fa; }
+      .purple { fill: #6d5ef6; }
+      .purple-light { fill: #e8e4ff; }
+      .purple-text { fill: #4a46c7; }
+      .gray { fill: #7b8aa7; }
+      .gray-2 { fill: #cdd5e6; }
+      .text { fill: #2d3748; }
+      .muted { fill: #69778d; }
+      .line { stroke: #d9e0ef; stroke-width: 1; }
+      .strong-line { stroke: #c7d0e3; stroke-width: 1.5; }
+      .badge { fill: #f2f4ff; stroke: #dfe3ff; }
+      .tag { fill: #f2f4ff; }
+      .green { fill: #dff7ed; }
+      .green-text { fill: #1d8f63; }
+      .yellow { fill: #ffeabf; }
+      .yellow-text { fill: #b67800; }
+      .blue { fill: #dfeafe; }
+      .blue-text { fill: #1b5ec9; }
+      .white { fill: #fff; }
+      .shadow { filter: drop-shadow(0 4px 10px rgba(36,54,97,0.08)); }
+      .ui { font-family: "Segoe UI", Arial, sans-serif; }
+      .title { font-size: 18px; font-weight: 600; }
+      .body { font-size: 14px; }
+      .mini { font-size: 11px; }
+      .big { font-size: 15px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1540" height="930"/>
+
+  <rect class="chrome" x="0" y="0" width="1540" height="36"/>
+  <rect class="header" x="0" y="36" width="1540" height="68"/>
+
+  <g class="ui">
+    <circle cx="52" cy="18" r="8" fill="#ff6b5f"/>
+    <circle cx="74" cy="18" r="8" fill="#f8c74b"/>
+    <circle cx="96" cy="18" r="8" fill="#5ec76f"/>
+
+    <rect x="120" y="8" width="140" height="20" rx="10" fill="#eef1f8"/>
+    <text x="138" y="23" class="mini muted">goracle fre</text>
+
+    <rect x="300" y="8" width="118" height="20" rx="10" fill="#f1f3fa"/>
+    <rect x="438" y="8" width="102" height="20" rx="10" fill="#f1f3fa"/>
+    <rect x="560" y="8" width="120" height="20" rx="10" fill="#f1f3fa"/>
+    <rect x="700" y="8" width="140" height="20" rx="10" fill="#f1f3fa"/>
+    <rect x="858" y="8" width="126" height="20" rx="10" fill="#f1f3fa"/>
+
+    <rect x="1018" y="8" width="112" height="20" rx="10" fill="#f7f3ff"/>
+    <text x="1045" y="23" class="mini purple-text">Supj</text>
+
+    <circle cx="1327" cy="16" r="18" fill="#f4c2a4"/>
+    <rect x="1360" y="11" width="110" height="30" rx="15" fill="#f5f8ff"/>
+    <text x="1380" y="30" class="mini text">Ask Gemini</text>
+  </g>
+
+  <g class="ui" transform="translate(0,36)">
+    <rect x="0" y="0" width="140" height="894" class="sidebar"/>
+    <rect x="20" y="26" width="96" height="94" rx="16" fill="#ffffff"/>
+    <circle cx="68" cy="68" r="23" fill="#6a5af7"/>
+    <circle cx="68" cy="58" r="11" fill="#d8d2ff"/>
+    <path d="M52 86 Q68 96 84 86" stroke="#d8d2ff" fill="none" stroke-width="4"/>
+    <text x="54" y="115" class="mini purple-text">Powered</text>
+    <text x="43" y="128" class="mini purple-text">by Hindsight</text>
+
+    <rect x="20" y="158" width="100" height="40" rx="10" fill="#eef2ff"/>
+    <text x="50" y="183" class="body text">Support Chat</text>
+
+    <rect x="20" y="220" width="104" height="34" rx="10" fill="#f7f8fb"/>
+    <text x="48" y="242" class="body muted">Customer History</text>
+
+    <rect x="20" y="272" width="104" height="34" rx="10" fill="#f7f8fb"/>
+    <text x="43" y="294" class="body muted">Support Insights</text>
+
+    <rect x="20" y="820" width="100" height="42" rx="12" fill="#eef2ff"/>
+    <circle cx="42" cy="841" r="7" fill="#7a68f5"/>
+    <text x="54" y="846" class="body purple-text">Hindsight Memory</text>
+  </g>
+
+  <g class="ui" transform="translate(140,104)">
+    <rect x="0" y="0" width="995" height="742" rx="18" class="panel shadow"/>
+    <text x="28" y="35" class="title text">Support Chat</text>
+    <text x="700" y="35" class="body muted">Session: 615c... </text>
+    <text x="885" y="35" class="body muted">Now</text>
+
+    <g>
+      <rect x="26" y="52" width="900" height="50" rx="12" fill="#f8f9fd"/>
+      <rect x="34" y="60" width="150" height="34" rx="10" fill="#e9e6ff"/>
+      <text x="57" y="82" class="body purple-text">Acm</text>
+      <rect x="196" y="60" width="180" height="34" rx="12" fill="#edf4ff"/>
+      <text x="220" y="82" class="body text">NovaTech Solutions</text>
+      <rect x="390" y="60" width="120" height="34" rx="12" fill="#eef9f2"/>
+      <text x="417" y="82" class="body text">CloudPeak Inc.</text>
+      <rect x="520" y="60" width="150" height="34" rx="12" fill="#f1f3ff"/>
+      <text x="545" y="82" class="body text">DataSphere ...</text>
+    </g>
+
+    <g>
+      <rect x="28" y="132" width="620" height="138" rx="14" fill="#ffffff" stroke="#e3e9f5"/>
+      <text x="60" y="164" class="body text">Acme Corp — API-timeout follow-up (PostgreSQL 15 / ECS / Node 20)</text>
+      <text x="62" y="188" class="body muted">You’ve already applied the most common fix...</text>
+      <text x="62" y="208" class="body muted">| Area | What to verify | adjust | Why it matters |</text>
+      <text x="62" y="228" class="body muted">| DB max_connections vs. pool size | ...</text>
+      <text x="62" y="247" class="body muted">| ECS task replica count | ...</text>
+      <rect x="28" y="270" width="620" height="52" rx="0" fill="#eff4ff"/>
+      <rect x="30" y="270" width="620" height="50" fill="#f8f9fd"/>
+      <text x="56" y="302" class="body muted">Describe your technical issue...</text>
+      <rect x="632" y="270" width="90" height="50" rx="10" fill="#665be8"/>
+      <text x="655" y="302" class="body white">Send</text>
+    </g>
+
+    <g transform="translate(678,132)">
+      <rect width="250" height="260" rx="14" class="panel shadow"/>
+      <rect x="16" y="18" width="120" height="58" rx="12" fill="#6d5ef6"/>
+      <text x="34" y="55" class="body white">Our API requests are</text>
+      <text x="34" y="72" class="body white">timing out.</text>
+      <text x="170" y="47" class="mini muted">04:38 PM</text>
+      <rect x="0" y="88" width="250" height="170" fill="#ffffff" stroke="#e6ebf5"/>
+      <text x="16" y="108" class="body purple-text">RECALL</text>
+      <line x1="16" y1="120" x2="238" y2="120" stroke="#dfe7fa"/>
+      <text x="28" y="142" class="body muted">• API requests were timing out</text>
+      <text x="28" y="162" class="body muted">• Acme Corp reported API timeouts</text>
+      <text x="28" y="182" class="body muted">• Failed fix tried cache clear</text>
+      <text x="28" y="202" class="body muted">• Increased pool size from 10 to 50</text>
+      <text x="28" y="222" class="body muted">• PostgreSQL upgraded from 14 to 15</text>
+      <text x="28" y="242" class="body muted">4 relevant memories retrieved</text>
+    </g>
+  </g>
+
+  <g class="ui" transform="translate(1135,104)">
+    <rect x="0" y="0" width="385" height="742" rx="18" class="panel shadow"/>
+    <rect x="20" y="18" width="345" height="58" rx="12" fill="#f8f9fd"/>
+    <text x="36" y="54" class="body text">Hindsight Memory Engine</text>
+    <rect x="22" y="90" width="340" height="610" rx="14" fill="#f9fbff" stroke="#dde7f5"/>
+    <text x="42" y="116" class="body purple-text">RECALL</text>
+    <text x="182" y="116" class="body muted">41 memories</text>
+    <g>
+      <circle cx="42" cy="144" r="5" fill="#6d5ef6"/>
+      <text x="56" y="150" class="body muted">Acme Corp reported API requests are timing out.</text>
+      <circle cx="42" cy="176" r="5" fill="#6d5ef6"/>
+      <text x="56" y="182" class="body muted">The Agent requested diagnostic details from Acme Corp</text>
+      <circle cx="42" cy="208" r="5" fill="#6d5ef6"/>
+      <text x="56" y="214" class="body muted">Acme Corp resolved API timeout issues on API</text>
+      <circle cx="42" cy="240" r="5" fill="#6d5ef6"/>
+      <text x="56" y="246" class="body muted">A failed attempt: clearing app cache</text>
+      <circle cx="42" cy="272" r="5" fill="#6d5ef6"/>
+      <text x="56" y="278" class="body muted">The Agent suggested troubleshooting steps</text>
+      <circle cx="42" cy="304" r="5" fill="#6d5ef6"/>
+      <text x="56" y="310" class="body muted">Acme Corp increased pool size to 50</text>
+    </g>
+    <rect x="18" y="615" width="345" height="64" rx="12" fill="#f3f5fe"/>
+    <text x="38" y="650" class="body purple-text">Recall</text>
+    <text x="158" y="650" class="body text">Retain</text>
+    <text x="260" y="650" class="body text">Reflect</text>
+  </g>
+</svg>
