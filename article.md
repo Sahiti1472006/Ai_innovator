@@ -143,8 +143,7 @@ retain_result = await hindsight.retain(
 
 The repository places `RECALL` before response generation and `RETAIN` after. That ordering matters. The agent should not answer from a blank context. It should answer from the customer's memory, then record the outcome for the next interaction.
 
-<!-- Screenshot: SupportMind AI support chat with Hindsight Memory Engine -->
-
+![SupportMind AI support chat with Hindsight Memory Engine](images/support-chat.png)
 ## A Concrete Example from the Repo
 
 The strongest example in the repository is the seeded `acme-corp` data. The memory bank is seeded with several facts, including:
