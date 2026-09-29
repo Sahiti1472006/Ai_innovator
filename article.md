@@ -211,7 +211,7 @@ async def reflect(
 
 That is the value of memory: it supports both real-time support and longer-term operational understanding.
 
-<img width="1917" height="1025" alt="Screenshot 2026-09-29 163955" src="https://github.com/user-attachments/assets/05cef709-94fb-4896-aa75-b10849efdb55" />
+<img width="1536" height="1024" alt="ChatGPT Image Sep 29, 2026, 05_50_59 PM" src="https://github.com/user-attachments/assets/2677750d-23d0-4d3d-97e4-0c9af27d2cc4" />
 
 ## Genuine Engineering Lessons
 
