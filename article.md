@@ -211,7 +211,7 @@ async def reflect(
 
 That is the value of memory: it supports both real-time support and longer-term operational understanding.
 
-<!-- Screenshot: Architecture diagram showing RECALL → LLM → RETAIN loop -->
+<img width="1917" height="1025" alt="Screenshot 2026-09-29 163955" src="https://github.com/user-attachments/assets/05cef709-94fb-4896-aa75-b10849efdb55" />
 
 ## Genuine Engineering Lessons
 
