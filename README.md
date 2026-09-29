@@ -32,15 +32,28 @@ SupportMind AI uses **Hindsight** to give the support agent persistent, structur
 
 ---
 
+## Key Features
+
+- 🧠 Persistent customer memory with Hindsight
+- 🔎 Cross-ticket semantic recall
+- 💬 Personalized technical support responses
+- 📝 Automatic retention of new support facts
+- 📊 REFLECT-powered support insights
+- 👤 Customer-specific Hindsight memory banks
+- ⚡ Real-time Memory Engine showing RECALL and RETAIN activity
+- 🧪 Four realistic synthetic B2B customer profiles
+
+---
+
 ## Architecture
 
 ```mermaid
 graph TD
     User["Customer Browser"]
-    FE["Next.js Frontend\nTypeScript + Tailwind"]
-    BE["FastAPI Backend\nPython"]
-    Groq["Groq LLM\nopenai/gpt-oss-120b"]
-    HS["Hindsight Cloud\nMemory Banks"]
+    FE["Next.js Frontend<br/>TypeScript + Tailwind"]
+    BE["FastAPI Backend<br/>Python"]
+    Groq["Groq LLM<br/>openai/gpt-oss-120b"]
+    HS["Hindsight Cloud<br/>Memory Banks"]
 
     User -->|message| FE
     FE -->|POST /api/chat| BE
@@ -51,37 +64,30 @@ graph TD
     BE -->|"③ RETAIN — store new facts"| HS
     BE -->|"response + memory events"| FE
     FE -->|"displays Memory Engine panel"| User
-```
 
----
-
-## Technology Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 14, React 18, TypeScript, Tailwind CSS |
-| Backend | Python, FastAPI, httpx |
-| LLM | Groq API — `openai/gpt-oss-120b` (env-configurable) |
-| Memory | Hindsight Cloud REST API v0.10 |
-
----
-
-## How Hindsight Is Used
+Technology Stack
+Layer	Technology
+Frontend	Next.js 14, React 18, TypeScript, Tailwind CSS
+Backend	Python, FastAPI, httpx
+LLM	Groq API — openai/gpt-oss-120b (env-configurable)
+Memory	Hindsight Cloud REST API v0.10
+How Hindsight Is Used
 
 SupportMind AI uses all three core Hindsight operations via its REST API.
 
-### Memory Banks
+Memory Banks
 
-Each customer has their own **Hindsight memory bank** (bank_id = customer_id, e.g., `acme-corp`).
+Each customer has their own Hindsight memory bank (bank_id = customer_id, e.g., acme-corp).
 This provides clean isolation between customers.
 
-### RETAIN — Storing new facts
+RETAIN — Storing new facts
 
-Called **after** every support exchange to store extracted facts.
+Called after every support exchange to store extracted facts.
 
-**Endpoint:** `POST /v1/default/banks/{bank_id}/memories`
+Endpoint: POST /v1/default/banks/{bank_id}/memories
 
-```python
+Implementation note: The example below illustrates the RETAIN operation. The actual implementation uses the Hindsight REST API through httpx.
+
 await hindsight.retain(
     bank_id="acme-corp",
     content="Customer upgraded PostgreSQL from v14 to v15. API timeouts re-emerged post-upgrade.",
@@ -89,22 +95,22 @@ await hindsight.retain(
     context="Support session",
     tags=["acme-corp"],
 )
-```
 
-**What gets retained:**
-- Customer environment details (Node.js version, PostgreSQL version, infrastructure)
-- Problem descriptions and symptoms
-- Solutions attempted (successful and failed)
-- Outcomes and resolutions
-- Customer preferences
+What gets retained:
 
-### RECALL — Retrieving relevant memories
+Customer environment details (Node.js version, PostgreSQL version, infrastructure)
+Problem descriptions and symptoms
+Solutions attempted (successful and failed)
+Outcomes and resolutions
+Customer preferences
+RECALL — Retrieving relevant memories
 
-Called **before** generating every response. Uses semantic similarity and spreading activation.
+Called before generating every response. Uses semantic similarity and spreading activation.
 
-**Endpoint:** `POST /v1/default/banks/{bank_id}/memories/recall`
+Endpoint: POST /v1/default/banks/{bank_id}/memories/recall
 
-```python
+Implementation note: The example below illustrates the RECALL operation. The actual implementation uses the Hindsight REST API through httpx.
+
 result = await hindsight.recall(
     bank_id="acme-corp",
     query="API requests are timing out",
@@ -113,21 +119,21 @@ result = await hindsight.recall(
     tags=["acme-corp"],
 )
 # result["results"] = [{ "text": "...", "type": "experience", "entities": [...] }]
-```
 
-**What gets recalled:**
-- Previous tickets with similar issues
-- Customer's technical environment
-- Previously tried solutions (including failed ones)
-- Customer preferences and communication style
+What gets recalled:
 
-### REFLECT — Synthesizing insights
+Previous tickets with similar issues
+Customer's technical environment
+Previously tried solutions (including failed ones)
+Customer preferences and communication style
+REFLECT — Synthesizing insights
 
-Called from the **Support Insights** page to identify patterns across accumulated memories.
+Called from the Support Insights page to identify patterns across accumulated memories.
 
-**Endpoint:** `POST /v1/default/banks/{bank_id}/reflect`
+Endpoint: POST /v1/default/banks/{bank_id}/reflect
 
-```python
+Implementation note: The example below illustrates the REFLECT operation. The actual implementation uses the Hindsight REST API through httpx.
+
 result = await hindsight.reflect(
     bank_id="acme-corp",
     query="What recurring patterns exist in API timeout issues?",
@@ -136,89 +142,68 @@ result = await hindsight.reflect(
 )
 # result["text"] = synthesized markdown insight
 # result["based_on"]["memories"] = evidence list
-```
+Demo Scenario
 
----
+This scenario demonstrates the complete memory loop in about 60–90 seconds.
 
-## Demo Scenario
+Step 1 — First ticket (Acme Corporation)
 
-This scenario demonstrates the complete memory loop in about 5 minutes.
-
-### Step 1 — First ticket (Acme Corporation)
-
-Customer: *"Our API requests are timing out."*
+Customer: "Our API requests are timing out."
 
 The agent asks for environment details.
-Customer: *"We're using Node.js 20, PostgreSQL 14, Enterprise plan."*
+Customer: "We're using Node.js 20, PostgreSQL 14, Enterprise plan."
 
 Agent suggests connection pool investigation.
-Customer: *"Increasing the connection pool fixed the issue!"*
+Customer: "Increasing the connection pool fixed the issue!"
 
-**Hindsight RETAIN stores:**
-- Environment: Node.js 20, PostgreSQL 14, Enterprise
-- Problem: API timeout
-- Root cause: connection pool exhaustion
-- Successful fix: increased connection pool size
+Hindsight RETAIN stores:
 
----
+Environment: Node.js 20, PostgreSQL 14, Enterprise
+Problem: API timeout
+Root cause: connection pool exhaustion
+Successful fix: increased connection pool size
+Step 2 — New ticket (same customer, later)
 
-### Step 2 — New ticket (same customer, later)
+Click New Conversation.
 
-Click **New Conversation**.
+Customer: "We're experiencing API timeouts again."
 
-Customer: *"We're experiencing API timeouts again."*
+Hindsight RECALL fires — retrieves previous ticket facts.
 
-**Hindsight RECALL fires** — retrieves previous ticket facts.
-
-Agent responds: *"I recall your previous API timeout — you were on Node.js 20, PostgreSQL 14, and the issue was resolved by increasing the connection pool. Let me check if the same configuration is involved…"*
+Agent responds: "I recall your previous API timeout — you were on Node.js 20, PostgreSQL 14, and the issue was resolved by increasing the connection pool. Let me check if the same configuration is involved…"
 
 The Memory Engine panel shows:
-```
+
 RECALL
 3 relevant memories found
 • API timeout resolved by connection pool increase
 • Node.js 20, PostgreSQL 14 environment
 • Enterprise plan customer
-```
+Step 3 — Environment update
 
----
+Customer: "We upgraded PostgreSQL from 14 to 15 yesterday."
 
-### Step 3 — Environment update
-
-Customer: *"We upgraded PostgreSQL from 14 to 15 yesterday."*
-
-**Hindsight RETAIN** stores the environment change.
+Hindsight RETAIN stores the environment change.
 
 Memory panel shows:
-```
+
 RETAIN
 + New fact retained
 PostgreSQL upgraded from v14 to v15
-```
+Step 4 — Support Insights (REFLECT)
 
----
+Navigate to Support Insights page.
 
-### Step 4 — Support Insights (REFLECT)
-
-Navigate to **Support Insights** page.
-
-Select Acme Corporation and click **Run REFLECT**.
+Select Acme Corporation and click Run REFLECT.
 
 Hindsight synthesizes from all accumulated memories and may show:
 
-```
 Recurring Pattern:
 PostgreSQL upgrade → connection pool configuration change
 → API timeout recurrence
 
 Observed across multiple tickets for this customer.
-```
-
----
-
-## Project Structure
-
-```
+Project Structure
 Ai_innovator/
 ├── backend/
 │   ├── main.py                      # FastAPI app entry point
@@ -253,89 +238,49 @@ Ai_innovator/
 ├── .env.example
 ├── .gitignore
 └── README.md
-```
-
----
-
-## Installation
-
-### Prerequisites
-
-- Python 3.11+
-- Node.js 18+ and npm
-- Groq API key ([get one](https://console.groq.com/))
-- Hindsight Cloud account ([sign up](https://ui.hindsight.vectorize.io/signup))
-
-### 1. Clone and set up environment variables
-
-```bash
+Installation
+Prerequisites
+Python 3.11+
+Node.js 18+ and npm
+Groq API key (get one)
+Hindsight Cloud account (sign up)
+1. Clone and set up environment variables
 cd Ai_innovator
 cp .env.example .env
 # Edit .env with your real API keys
-```
-
-### 2. Install backend dependencies
-
-```bash
+2. Install backend dependencies
 cd backend
 pip install -r requirements.txt
-```
-
-### 3. Install frontend dependencies
-
-```bash
+3. Install frontend dependencies
 cd ../frontend
 npm install
-```
-
----
-
-## Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GROQ_API_KEY` | Yes | Your Groq API key |
-| `GROQ_MODEL` | No | LLM model (default: `openai/gpt-oss-120b`) |
-| `HINDSIGHT_BASE_URL` | Yes | Your Hindsight Cloud instance URL |
-| `HINDSIGHT_API_KEY` | Yes | Your Hindsight API key |
-| `CORS_ORIGINS` | No | Frontend origin (default: `http://localhost:3000`) |
-
----
-
-## Running the Application
-
-### Backend
-
-```bash
+Environment Variables
+Variable	Required	Description
+GROQ_API_KEY	Yes	Your Groq API key
+GROQ_MODEL	No	LLM model (default: openai/gpt-oss-120b)
+HINDSIGHT_BASE_URL	Yes	Your Hindsight Cloud instance URL
+HINDSIGHT_API_KEY	Yes	Your Hindsight API key
+CORS_ORIGINS	No	Frontend origin (default: http://localhost:3000)
+Running the Application
+Backend
 cd Ai_innovator
 uvicorn backend.main:app --reload --port 8000
-```
 
 API docs available at: http://localhost:8000/docs
 
-### Seed demo data (run once)
-
-```bash
+Seed demo data (run once)
 cd Ai_innovator
 python -m backend.data.seed_data
-```
 
 This loads historical ticket data for all 4 demo customers into their Hindsight memory banks.
 
-### Frontend
-
-```bash
+Frontend
 cd Ai_innovator/frontend
 npm run dev
-```
 
 Open: http://localhost:3000
 
----
-
-## Example Interaction
-
-```
+Example Interaction
 User:  "Our API requests are timing out."
 
 [RECALL: 3 relevant memories found]
@@ -351,24 +296,19 @@ Agent: "I can see you've had a similar issue before. Based on your Node.js 20 /
 [RETAIN: 2 facts stored]
   + Customer reporting API timeout again
   + Current session context stored
-```
 
----
+Limitations:
 
-## Limitations
+Hindsight REFLECT requires an LLM configured on the Hindsight Cloud instance
+The openai/gpt-oss-120b model requires Groq API access
+Demo data seeder must be run before the cross-ticket memory demo works out-of-the-box
+Hindsight processes retain operations synchronously — first response may be slower
 
-- Hindsight REFLECT requires an LLM configured on the Hindsight Cloud instance
-- The `openai/gpt-oss-120b` model requires Groq API access
-- Demo data seeder must be run before the cross-ticket memory demo works out-of-the-box
-- Hindsight processes retain operations synchronously — first response may be slower
+Future Improvements:
 
----
-
-## Future Improvements
-
-- Real-time streaming responses (SSE)
-- Multi-tenant isolation (per-user memory banks)
-- Ticket severity detection from memory patterns
-- Proactive insight alerts ("3 customers reported this issue this week")
-- Webhook integration for automatic ticket creation
-- Memory export / audit log viewer
+Real-time streaming responses (SSE)
+Multi-tenant isolation (per-user memory banks)
+Ticket severity detection from memory patterns
+Proactive insight alerts ("3 customers reported this issue this week")
+Webhook integration for automatic ticket creation
+Memory export / audit log viewer
