@@ -182,6 +182,7 @@ This lets the agent recognize:
 - the likely root cause is tied to previous incidents
 
 This makes the system useful because it keeps support context structured and retrievable across separate conversations.
+![Customer history view showing prior customer incidents](images/customer-history.png)
 
 ## REFLECT: Memory as Insight
 
@@ -203,6 +204,7 @@ async def reflect(
         "include": {"facts": {} } if include_facts else {},
     }
 ```
+![Support insights view showing REFLECT-generated patterns](images/support-insights.png)
 
 `reflect` is the portion of the system that synthesizes patterns from accumulated memory. The repo clearly names this as a support-insights workflow. The system collects memory across a bank and can reason over customer-specific patterns. For example, a stored fact like "PostgreSQL upgrade from 14 to 15" alongside earlier connection-pool incidents creates a pattern that is useful to the support team. It is not the same thing as raw chat logs.
 
